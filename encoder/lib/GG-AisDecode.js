@@ -345,30 +345,27 @@ function AisDecode (input, session) {
             break;
         case 5:
             this.class  = 'A';
-//          Get the AIS Version indicator
-//          0 = station compliant with Recommendation ITU-R M.1371-1
-//          1 = station compliant with Recommendation ITU-R M.1371-3
-//          2-3 = station compliant with future editions
-            var AIS_version_indicator = this.GetInt(38,2);
-            if( AIS_version_indicator < 2 ) {
-                this.imo = this.GetInt(40,30);
-                this.callsign    = this.GetStr(70,42);
-                this.shipname    = this.GetStr(112,120).trim();
-                this.cargo       = this.GetInt(232,8);
-                this.dimA        = this.GetInt(240,9);
-                this.dimB        = this.GetInt(249,9);
-                this.dimC        = this.GetInt(258,6);
-                this.dimD        = this.GetInt(264,6);
-                this.etaMo       = this.GetInt(274,4);
-                this.etaDay      = this.GetInt(278,5);
-                this.etaHr       = this.GetInt(283,5);
-                this.etaMin      = this.GetInt(288,6);
-                this.draught     = this.GetInt(294, 8 ) / 10.0;
-                this.destination = this.GetStr(302, 120).trim();
-                this.length      = this.dimA + this.dimB;
-                this.width       = this.dimC + this.dimD;
-                this.valid       = true;
-            }
+            
+//          Removed AIS Version indicator Get and Check
+//          Was blocking data for ships with newer AIS Version
+            
+            this.imo = this.GetInt(40,30);
+            this.callsign    = this.GetStr(70,42);
+            this.shipname    = this.GetStr(112,120).trim();
+            this.cargo       = this.GetInt(232,8);
+            this.dimA        = this.GetInt(240,9);
+            this.dimB        = this.GetInt(249,9);
+            this.dimC        = this.GetInt(258,6);
+            this.dimD        = this.GetInt(264,6);
+            this.etaMo       = this.GetInt(274,4);
+            this.etaDay      = this.GetInt(278,5);
+            this.etaHr       = this.GetInt(283,5);
+            this.etaMin      = this.GetInt(288,6);
+            this.draught     = this.GetInt(294, 8 ) / 10.0;
+            this.destination = this.GetStr(302, 120).trim();
+            this.length      = this.dimA + this.dimB;
+            this.width       = this.dimC + this.dimD;
+            this.valid       = true;
 
             break;
         case 24:  // Vesel static information
